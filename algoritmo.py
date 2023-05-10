@@ -17,7 +17,8 @@ def ripwin():
             break
     if window_true:
         rasterlinkwindow = gw.getWindowsWithTitle(window_true)[0]
-        rasterlinkwindow.resizeTo(200, 200)
+        rasterlinkwindow.maximize()
+        rasterlinkwindow.resizeTo(800, 800)
         
             
     else:
