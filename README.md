@@ -6,11 +6,14 @@
  ## Softwares utilizados
  * Para este projeto estaremos utilizando o software de RIP da MIMAKI RasterLinkPro5 IP
  * Utilizaremos a linguagem python para coleta de dados
+ ### Biblicotecas 
+ * [PyAutoGUI](https://pyautogui.readthedocs.io/)
+ * [PyGetWindow](https://pygetwindow.readthedocs.io/en/latest/)
 
 ---
 
 ## To-do
- - [ ] Coleta de dados no painel de nível de tinta do RasterLinkPro5 IP
+ - [x] Coleta de dados no painel de nível de tinta do RasterLinkPro5 IP
  - [ ] Converter poncentagem de tinta em mililitros
  - [ ] Salvar dados em planília para controle futuro
  - [ ] Mensurar consumo de tinta ao longo do tempo
