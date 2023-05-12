@@ -13,7 +13,7 @@
 ---
 
 ## To-do
- - [x] Coleta de dados no painel de nível de tinta do RasterLinkPro5 IP
+ - [ ] Coleta de dados no painel de nível de tinta do RasterLinkPro5 IP
  - [ ] Converter poncentagem de tinta em mililitros
  - [ ] Salvar dados em planília para controle futuro
  - [ ] Mensurar consumo de tinta ao longo do tempo
