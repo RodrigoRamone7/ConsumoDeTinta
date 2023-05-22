@@ -1,6 +1,7 @@
 import pyautogui as ag
 import pygetwindow as gw
 
+
 def ripwin(): #Valida se a janela está aberta
     window_true = None
     janelas = []
