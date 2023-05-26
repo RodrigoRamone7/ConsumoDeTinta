@@ -1,6 +1,7 @@
 import pyautogui as ag
 import pygetwindow as gw
 
+print(input('Coloque a janela do RIP no monitor principal e pressione qualquer tecla'))
 
 def ripwin(): #Valida se a janela está aberta
     window_true = None
@@ -19,7 +20,7 @@ def ripwin(): #Valida se a janela está aberta
         rasterlinkwindow.resizeTo(800, 800)
         
             
-    else:
+    else: #Mensagem de erro caso o RIP não esteja aberto
         ag.alert(text='Abra o programa de RIP', title='ERRO!', button='OK')
         return False
     
@@ -29,12 +30,14 @@ def moveto(): #Sequencia de ações para encontrar níveis de tinta
     if ripwin() == True: # A janela do RIP deve estar no monitor principal
         ag.moveTo(170,115)
         ag.click()
+        ag.moveTo(580,150)
+        ag.click()
         ag.moveTo(700,420)
         ag.click()
         return True
         
 def capture(): #Captura Screenshot dos níveis de tinta
     if moveto() == True:
-        img = ag.screenshot('ss.png',region=(489,165, 289, 232),)
+        img = ag.screenshot('ss.png',region=(544,202, 221, 169),)
         
 capture()
