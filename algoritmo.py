@@ -1,7 +1,11 @@
 import pyautogui as ag
 import pygetwindow as gw
+import pytesseract as pyt
+import cv2
 
 print(input('Coloque a janela do RIP no monitor principal e pressione qualquer tecla'))
+
+pyt.pytesseract.tesseract_cmd = r'C:\Tesseract-OCR\tesseract.exe'
 
 def ripwin(): #Valida se a janela está aberta
     window_true = None
@@ -9,6 +13,7 @@ def ripwin(): #Valida se a janela está aberta
     janelas += gw.getAllTitles()
     
     tittle = 'RasterLinkPro5IP' #Título a ser encontrado
+    
     for valid in janelas: #Valida se o raster link está aberta
         if tittle in valid:
             window_true = valid
@@ -40,4 +45,17 @@ def capture(): #Captura Screenshot dos níveis de tinta
     if moveto() == True:
         img = ag.screenshot('ss.png',region=(544,202, 221, 169),)
         
-capture()
+        
+def reading(): #Leitura de dados da imagem
+    capture()
+    img = cv2.imread('ss.png')
+    def capmagenta(): #Captura de dados de magenta
+        x, y, width, height = 185, 6, 27, 12 #Coordenadas e tamanho do dado a ser capturado
+        roi = img[y:y+height, x:x+width]
+        gray_roi = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
+        extract_text = pyt.image_to_string(gray_roi)
+        return extract_text
+    magenta = capmagenta()
+    print(magenta)
+
+reading()
