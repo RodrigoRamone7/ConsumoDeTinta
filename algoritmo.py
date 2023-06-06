@@ -50,12 +50,53 @@ def reading(): #Leitura de dados da imagem
     capture()
     img = cv2.imread('ss.png')
     def capmagenta(): #Captura de dados de magenta
-        x, y, width, height = 185, 6, 27, 12 #Coordenadas e tamanho do dado a ser capturado
+        x, y, width, height = 182, 5, 35, 14 #Coordenadas e tamanho do dado a ser capturado
         roi = img[y:y+height, x:x+width]
         gray_roi = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
         extract_text = pyt.image_to_string(gray_roi)
         return extract_text
     magenta = capmagenta()
-    print(magenta)
+    
+    def capcyan(): #Captura de dados de cyan
+        x, y, width, height = 182, 26, 35, 14 #Coordenadas e tamanho do dado a ser capturado
+        roi = img[y:y+height, x:x+width]
+        gray_roi = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
+        extract_text = pyt.image_to_string(gray_roi)
+        return extract_text
+    cyan = capcyan()
+    
+    def capamarelo(): #Captura de dados de amarelo
+        x, y, width, height = 182, 47, 35, 14 #Coordenadas e tamanho do dado a ser capturado
+        roi = img[y:y+height, x:x+width]
+        gray_roi = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
+        extract_text = pyt.image_to_string(gray_roi)
+        return extract_text
+    amarelo = capamarelo()
+    
+    def cappreto(): #Captura de dados de preto
+        x, y, width, height = 182, 68, 35, 14 #Coordenadas e tamanho do dado a ser capturado
+        roi = img[y:y+height, x:x+width]
+        gray_roi = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
+        extract_text = pyt.image_to_string(gray_roi)
+        return extract_text
+    preto = cappreto()
+    
+    def capbranco1(): #Captura de dados de branco1
+        x, y, width, height = 182, 131, 35, 14 #Coordenadas e tamanho do dado a ser capturado
+        roi = img[y:y+height, x:x+width]
+        gray_roi = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
+        extract_text = pyt.image_to_string(gray_roi)
+        return extract_text
+    branco1 = capbranco1()
+    
+    def capbranco2(): #Captura de dados de branco2
+        x, y, width, height = 182, 152, 35, 14 #Coordenadas e tamanho do dado a ser capturado
+        roi = img[y:y+height, x:x+width]
+        gray_roi = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
+        extract_text = pyt.image_to_string(gray_roi)
+        return extract_text
+    branco2 = capbranco2()
+    
+    print(magenta, cyan, amarelo, preto, branco1, branco2)
 
 reading()
