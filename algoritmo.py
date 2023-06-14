@@ -2,6 +2,7 @@ import pyautogui as ag
 import pygetwindow as gw
 import pytesseract as pyt
 import cv2
+from dados import gravarDados
 
 print(input('Coloque a janela do RIP no monitor principal e pressione qualquer tecla'))
 
@@ -62,6 +63,21 @@ def reading(): #Leitura de dados da imagem
     branco1 = capPoncentagem(182,131,35,14)
     branco2 = capPoncentagem(182,152,35,14)
     
-    print(magenta, cyan, amarelo, preto, branco1, branco2)
+    def limparcaractere(limp):
+        l = limp
+        limpar = "\n"
+        for letra in l:
+            if letra in limpar:
+                l = l.replace(letra,'')
+        return l
+    
+    magenta = limparcaractere(magenta)
+    cyan = limparcaractere(cyan)
+    amarelo = limparcaractere(amarelo)
+    preto = limparcaractere(preto)
+    branco1 = limparcaractere(branco1)
+    branco2 = limparcaractere(branco2)
+    
+    gravarDados(magenta, cyan, amarelo, preto, branco1, branco2)
 
 reading()
