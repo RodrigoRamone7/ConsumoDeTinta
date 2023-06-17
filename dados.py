@@ -2,7 +2,7 @@ import openpyxl as xl
 from openpyxl.styles import numbers
 from datetime import datetime
 
-def gravarDados(c,m,a,b,wh1,wh2):
+def gravarDados(m,c,a,b,wh1,wh2):
     def data_hora():
         # Obter a data e hora atuais
         data_hora_atual = datetime.now()
@@ -13,7 +13,8 @@ def gravarDados(c,m,a,b,wh1,wh2):
         return data_hora_formatada
 
     # Carregar o arquivo da planilha existente
-    wb = xl.load_workbook('Consumo.xlsx')
+    wb = xl.load_workbook('Consumo1.xlsx')
+    wb.save('Backup.xlsx')
 
     # Escolhe active sheet
     ws = wb.active
@@ -21,17 +22,32 @@ def gravarDados(c,m,a,b,wh1,wh2):
     # Encontrar a próxima célula vazia na coluna A
     next_row = ws.max_row + 1
 
-    cyan = c
     magenta = m
+    cyan = c
     amarelo = a
     preto = b
     branco1 = wh1
     branco2 = wh2
+    
+    def limparcaractere(limp):
+        l = limp
+        limpar = "\n"
+        for letra in l:
+            if letra in limpar:
+                l = l.replace(letra,'')
+        return l
+    
+    magenta = limparcaractere(magenta)
+    cyan = limparcaractere(cyan)
+    amarelo = limparcaractere(amarelo)
+    preto = limparcaractere(preto)
+    branco1 = limparcaractere(branco1)
+    branco2 = limparcaractere(branco2)
 
     # Dados que você deseja adicionar
     dados = [data_hora(),
-            cyan, f"=B{next_row} * 600 / 100 *100",
             magenta, f"=D{next_row} * 600 / 100 *100",
+            cyan, f"=B{next_row} * 600 / 100 *100",
             amarelo, f"=F{next_row} * 600 / 100 *100",
             preto, f"=H{next_row} * 600 / 100 *100",
             branco1, f"=J{next_row} * 600 / 100 *100",

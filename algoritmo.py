@@ -53,7 +53,9 @@ def reading(): #Leitura de dados da imagem
     def capPoncentagem(x,y,width,height): #Captura de dados de porcentagem
         x, y, width, height = x, y, width, height #Coordenadas e tamanho do dado a ser capturado
         roi = img[y:y+height, x:x+width]
-        gray_roi = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
+        (h, w) = roi.shape[:2]
+        roire = cv2.resize(roi, (w*2,h*2))
+        gray_roi = cv2.cvtColor(roire, cv2.COLOR_BGR2GRAY)
         extract_text = pyt.image_to_string(gray_roi)
         return extract_text
     magenta = capPoncentagem(182,5,35,14)
@@ -63,21 +65,18 @@ def reading(): #Leitura de dados da imagem
     branco1 = capPoncentagem(182,131,35,14)
     branco2 = capPoncentagem(182,152,35,14)
     
-    def limparcaractere(limp):
-        l = limp
-        limpar = "\n"
-        for letra in l:
-            if letra in limpar:
-                l = l.replace(letra,'')
-        return l
+    def conferencia():
+        conf = input()
+        if conf == "Y" or conf == "y":
+            gravarDados(magenta, cyan, amarelo, preto, branco1, branco2)
+        else:
+            exit()
     
-    magenta = limparcaractere(magenta)
-    cyan = limparcaractere(cyan)
-    amarelo = limparcaractere(amarelo)
-    preto = limparcaractere(preto)
-    branco1 = limparcaractere(branco1)
-    branco2 = limparcaractere(branco2)
+    print('Confira os dados recebidos e digite Y para correto e N para incorreto:')
+    print(magenta, cyan, amarelo, preto, branco1, branco2)
+    conferencia()
     
-    gravarDados(magenta, cyan, amarelo, preto, branco1, branco2)
+    
+    
 
 reading()
