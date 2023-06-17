@@ -13,7 +13,7 @@ def gravarDados(m,c,a,b,wh1,wh2):
         return data_hora_formatada
 
     # Carregar o arquivo da planilha existente
-    wb = xl.load_workbook('Consumo1.xlsx')
+    wb = xl.load_workbook('Consumo.xlsx')
     wb.save('Backup.xlsx')
 
     # Escolhe active sheet
@@ -92,5 +92,5 @@ def gravarDados(m,c,a,b,wh1,wh2):
     format_colum_ml("M")
     format_colum_ml("N")
 
-    wb.save('Consumo1.xlsx')
+    wb.save('Consumo.xlsx')
 
