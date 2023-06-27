@@ -78,9 +78,9 @@ def gravarDados(m,c,a,b,wh1,wh2):
     format_colum_percent("J")
     format_colum_percent("L")
 
-    def format_colum_ml(coluna):
+    def format_colum_ml(coluna): #Formata a coluna de forma personalizada de acordo com célula especificada
         col = ws[coluna]
-        format_num = ws['C2'].number_format
+        format_num = ws['C2'].number_format #Célula a ser capturada a formatação personalizada
         for celula in col:
             celula.number_format = format_num
             
@@ -92,5 +92,5 @@ def gravarDados(m,c,a,b,wh1,wh2):
     format_colum_ml("M")
     format_colum_ml("N")
 
-    wb.save('Consumo.xlsx')
+    wb.save('Consumo1.xlsx')
 
