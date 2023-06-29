@@ -4,7 +4,7 @@ import pytesseract as pyt
 import cv2
 from dados import gravarDados
 
-print(input('Coloque a janela do RIP no monitor principal e pressione qualquer tecla'))
+print(input(f'COLETA DE DADOS DE CONSUMO DE TINTA \n Por favor siga as seguintes instruções: \n 1 - Verifique se a maquina está ligada \n 2 - Certifique-se de que a maquina não está imprimindo nada \n Para continuar pressiona ENTER'))
 
 pyt.pytesseract.tesseract_cmd = r'C:\Tesseract-OCR\tesseract.exe'
 
@@ -23,11 +23,15 @@ def ripwin(): #Valida se a janela está aberta
         rasterlinkwindow = gw.getWindowsWithTitle(window_true)[0]
         rasterlinkwindow.minimize()
         rasterlinkwindow.maximize()
+        rasterlinkwindow.moveTo(0,0)
         rasterlinkwindow.resizeTo(800, 800)
         
             
     else: #Mensagem de erro caso o RIP não esteja aberto
-        ag.alert(text='Abra o programa de RIP', title='ERRO!', button='OK')
+        ag.alert(text='Abra o programa de RIP e aguarde sua inicialização', title='ERRO!', button='OK')
+        alertwindow = gw.getActiveWindow()
+        alertwindow.activate()
+        moveto()
         return False
     
     return True
@@ -44,7 +48,7 @@ def moveto(): #Sequencia de ações para encontrar níveis de tinta
         
 def capture(): #Captura Screenshot dos níveis de tinta
     if moveto() == True:
-        img = ag.screenshot('ss.png',region=(544,202, 221, 169),)
+        img = ag.screenshot('ss.png',region=(544,211, 230, 169),)
         
         
 def reading(): #Leitura de dados da imagem
@@ -58,19 +62,19 @@ def reading(): #Leitura de dados da imagem
         gray_roi = cv2.cvtColor(roire, cv2.COLOR_BGR2GRAY)
         extract_text = pyt.image_to_string(gray_roi)
         return extract_text
-    magenta = capPoncentagem(182,5,35,14)
-    cyan = capPoncentagem(182,26,35,14)
-    amarelo = capPoncentagem(182,47,35,14)
-    preto = capPoncentagem(182,68,35,14)
-    branco1 = capPoncentagem(182,131,35,14)
-    branco2 = capPoncentagem(182,152,35,14)
+    magenta = capPoncentagem(190,4,35,14)
+    cyan = capPoncentagem(190,25,35,14)
+    amarelo = capPoncentagem(190,46,35,14)
+    preto = capPoncentagem(190,67,35,14)
+    branco1 = capPoncentagem(190,130,35,14)
+    branco2 = capPoncentagem(190,151,35,14)
     
     def conferencia():
         conf = input()
         if conf == "Y" or conf == "y":
             gravarDados(magenta, cyan, amarelo, preto, branco1, branco2)
         else:
-            exit()
+            reading()
     
     print('Confira os dados recebidos e digite Y para correto e N para incorreto:')
     print(magenta, cyan, amarelo, preto, branco1, branco2)
