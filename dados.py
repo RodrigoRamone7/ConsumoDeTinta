@@ -20,7 +20,9 @@ def gravarDados(m,c,a,b,wh1,wh2):
     ws = wb.active
 
     # Encontrar a próxima célula vazia na coluna A
-    next_row = ws.max_row + 1
+    next_row = 1
+    while ws.cell(row=next_row, column=1).value is not None:
+        next_row += 1
 
     magenta = m
     cyan = c
@@ -80,7 +82,7 @@ def gravarDados(m,c,a,b,wh1,wh2):
 
     def format_colum_ml(coluna): #Formata a coluna de forma personalizada de acordo com célula especificada
         col = ws[coluna]
-        format_num = ws['C2'].number_format #Célula a ser capturada a formatação personalizada
+        format_num = ws['P1'].number_format #Célula a ser capturada a formatação personalizada
         for celula in col:
             celula.number_format = format_num
             
@@ -92,5 +94,5 @@ def gravarDados(m,c,a,b,wh1,wh2):
     format_colum_ml("M")
     format_colum_ml("N")
 
-    wb.save('Consumo1.xlsx')
+    wb.save('Consumo.xlsx')
 
