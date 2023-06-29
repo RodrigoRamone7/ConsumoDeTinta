@@ -48,8 +48,8 @@ def gravarDados(m,c,a,b,wh1,wh2):
 
     # Dados que você deseja adicionar
     dados = [data_hora(),
-            magenta, f"=D{next_row} * 600 / 100 *100",
-            cyan, f"=B{next_row} * 600 / 100 *100",
+            magenta, f"=B{next_row} * 600 / 100 *100",
+            cyan, f"=D{next_row} * 600 / 100 *100",
             amarelo, f"=F{next_row} * 600 / 100 *100",
             preto, f"=H{next_row} * 600 / 100 *100",
             branco1, f"=J{next_row} * 600 / 100 *100",
