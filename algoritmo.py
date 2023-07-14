@@ -1,6 +1,7 @@
 import pyautogui as ag
 import pygetwindow as gw
 import pytesseract as pyt
+from google.cloud import vision
 import cv2
 from dados import gravarDados
 
@@ -58,10 +59,19 @@ def reading(): #Leitura de dados da imagem
         x, y, width, height = x, y, width, height #Coordenadas e tamanho do dado a ser capturado
         roi = img[y:y+height, x:x+width]
         (h, w) = roi.shape[:2]
-        roire = cv2.resize(roi, (w*2,h*2))
+        roire = cv2.resize(roi, (w*3,h*3))
         gray_roi = cv2.cvtColor(roire, cv2.COLOR_BGR2GRAY)
-        extract_text = pyt.image_to_string(gray_roi)
-        return extract_text
+        ret,thr_roi = cv2.threshold(gray_roi,127,255,cv2.THRESH_BINARY)
+        extract_text = pyt.image_to_string(thr_roi)
+        # Substituir caracteres incorretos por números correspondentes
+        corrected_text = ""
+        for char in extract_text:
+            if char == 'G':
+                corrected_text += '9'
+            else:
+                corrected_text += char
+        
+        return corrected_text
     magenta = capPoncentagem(190,4,35,14)
     cyan = capPoncentagem(190,25,35,14)
     amarelo = capPoncentagem(190,46,35,14)
