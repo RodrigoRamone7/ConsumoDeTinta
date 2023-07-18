@@ -33,11 +33,15 @@ def gravarDados(m,c,a,b,wh1,wh2):
     
     def limparcaractere(limp):
         l = limp
-        limpar = "\n"
+        limpar = "%\n"
         for letra in l:
             if letra in limpar:
                 l = l.replace(letra,'')
-        return l
+        try:
+            decimal = int(l) / 100
+            return decimal
+        except ValueError:
+            return None
     
     magenta = limparcaractere(magenta)
     cyan = limparcaractere(cyan)
@@ -45,16 +49,28 @@ def gravarDados(m,c,a,b,wh1,wh2):
     preto = limparcaractere(preto)
     branco1 = limparcaractere(branco1)
     branco2 = limparcaractere(branco2)
+    
+    def converterML(decimal):
+        mls = decimal * 600 / 100 * 100
+        return mls
+    
+    mlMagenta = converterML(magenta)
+    mlCyan = converterML(cyan)
+    mlAmarelo = converterML(amarelo)
+    mlPreto = converterML(preto)
+    mlBranco1 = converterML(branco1)
+    mlBranco2 = converterML(branco2)
+    mlTotal = mlMagenta + mlCyan + mlAmarelo + mlPreto + mlBranco1 + mlBranco2
 
     # Dados que você deseja adicionar
     dados = [data_hora(),
-            magenta, f"=B{next_row} * 600 / 100 *100",
-            cyan, f"=D{next_row} * 600 / 100 *100",
-            amarelo, f"=F{next_row} * 600 / 100 *100",
-            preto, f"=H{next_row} * 600 / 100 *100",
-            branco1, f"=J{next_row} * 600 / 100 *100",
-            branco2, f"=L{next_row} * 600 / 100 *100",
-            f'=C{next_row}+E{next_row}+G{next_row}+I{next_row}+K{next_row}+M{next_row}']
+            magenta, mlMagenta,
+            cyan, mlCyan,
+            amarelo, mlAmarelo,
+            preto, mlPreto,
+            branco1, mlBranco1,
+            branco2, mlBranco2,
+            mlTotal]
 
     # adiciona os dados na próxima linha vazia sem sequencia
     for i, dado in enumerate(dados, start=1):
