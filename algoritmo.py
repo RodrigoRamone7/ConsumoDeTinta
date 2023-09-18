@@ -1,7 +1,6 @@
 import pyautogui as ag
 import pygetwindow as gw
 import pytesseract as pyt
-from google.cloud import vision
 import cv2
 from dados import gravarDados
 
@@ -70,7 +69,7 @@ def reading(): #Leitura de dados da imagem
                 corrected_text += '9'
             else:
                 corrected_text += char
-        
+        corrected_text = extract_text.replace("276%\n", "26%\n")
         return corrected_text
     magenta = capPoncentagem(190,4,35,14)
     cyan = capPoncentagem(190,25,35,14)
